@@ -5,7 +5,10 @@ Guía hecha por Estrella Freundt.
 Obtener la última versión del archivo en:
 https://github.com/efrndt/network-administration/blob/main/network-routing-and-switching/guia_ccna2.txt 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~SWITCH~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 -Para cambiar la ipv4 de una vlan:
   Switch>enable
   Switch#configure terminal
@@ -51,7 +54,27 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
   Switch(config-if-range)switchport mode access 
   Switch(config-if-ramnge)swtich access vlan 20
 
+-Crear una vlan administrativa
+  Switch>enable
+  Switch#config terminal
+  Switch(config)#vlan 90
+  Switch(config-vlan)#name ADMINISTRATIVA
+  Switch(config-vlan)#exit
+# Ahora le asignaremos una dirección IP a la vlan administrativa.
+# Recordar que la única vlan del switch que debe tener una IP
+# debe de ser la vlan administrativa, de otra forma, se expone a
+# riesgos de malfuncionamiento y seguridad.
+  Switch(config)interface vlan 90
+  Switch(config-if)#ip address 192.168.90.5
+  Switch(config-if)#no shutdown
+# La vlan administrativa no debe de tener ningún puerto asignado
+# en una situación ideal. La única forma a entrar a esta vlan
+# deberá de ser por SSH.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~ROUTER~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 -Para cambiar la ipv4 de una interfaz:
   Router>enable
   Router#configure terminal
