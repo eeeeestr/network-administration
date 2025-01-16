@@ -1,0 +1,83 @@
+Guía para el curso de Enrutamiento y conmutación de redes
+(CCNA II).
+Guía hecha por Estrella Freundt.
+Último edit 
+Obtener la última versión del archivo en: 
+
+~~~~~~~~~~SWITCH~~~~~~~~~~
+-Para cambiar la ipv4 de una vlan:
+  Switch>enable
+  Switch#configure terminal
+  Switch(config)#interface <vlan>
+  Switch(config-if)#ip address <ip> <máscara>
+  Switch(config-if)#no shutdown
+
+-Para poner gateway por defecto:
+  Switch>enable
+  Switch#configute terminal
+  Switch(config)#ip default-gateway <ip>
+
+-Para cambiar la ipv6 de una vlan:
+  Switch>enable
+  Switch#config terminal
+  Switch(config)#sdm prefer dual-ipv4-and-ipv6 default
+  Swtich(config)#int <interface donde estará el router>
+  Switch(config-if)#switchport mode trunk
+  Switch(config-if)#exit
+  Switch(config)#int <vlan>
+  Switch(config-if)#ipv6 address <ip>/<prefijo>
+  Switch(config-if)#no shutdown
+
+-Consultar estado de interfaces ipv4 e ipv6
+  Switch>enable
+  Switch>show ip interface brief
+  Switch>show ipv6 interface brief
+
+-Crear una vlan de datos (vlan 10) y renombrarla a "OPERACIONES"
+  Switch>enable
+  Switch#config terminal
+  Switch(config)#vlan 10
+  Switch(config-if)#name OPERACIONES
+  
+-Asignarle puertos a una vlan (vlan 20)
+  Switch>enable
+# Mostar las vlans existentes:
+  Switch#show vlan
+# Mostrar los puertos disponibles con ipv4
+  Switch#show ip interface brief
+  Switch#config terminal
+  Switch(config)#interface range fa0/2-8
+  Switch(config-if-range)switchport mode access 
+  Switch(config-if-ramnge)swtich access vlan 20
+
+~~~~~~~~~~ROUTER~~~~~~~~~~
+-Para cambiar la ipv4 de una interfaz:
+  Router>enable
+  Router#configure terminal
+  Router(config)#interface <interfaz>
+  Router(config-if)#ip address <ip> <máscara>
+  Router(config-if)#no shutdown
+
+- Para cambiar la ipv6 de una interfaz:
+  Router>enable
+  Router#configure terminal
+  Router(config)#ipv6 unicast-routing
+  Router(config)#interface <interfaz>
+  Router(config-if)#ipv6 enable
+  Router(config-if)$#ipv6 address <ip>/<prefijo>
+  Router#(config-if)#no shutdown
+
+- Establecer servidor SSH
+  Router>enable
+  Router#config terminal
+  Router(config)#ip domain-name <nombre.dominio>
+  Router(config)#crypto key generate rsa 
+	How many bits in the modulus [512]: 2048
+  Router(config)#ip ssh version 2
+  Router(config)#line vty 0 4
+  Router(config-if)#transport input shh
+  Router(config-if)#login local
+  Router(config-if)#exit
+  Router(config)#username <nombre de usuario> password <contraseña>
+  Router(config)#service password-encryption 
+
