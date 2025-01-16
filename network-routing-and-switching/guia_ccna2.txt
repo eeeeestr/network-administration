@@ -1,6 +1,7 @@
-Guía para el curso de Enrutamiento y conmutación de redes
+Guía para el curso de Enrutamiento y Conmutación de Redes
 (CCNA II).
 Guía hecha por Estrella Freundt.
+Este curso me fue dictado por el profesor Napoleón Cerna Rosas.
 Último edit: 16 de Enero de 2025
 Obtener la última versión del archivo en:
 https://github.com/efrndt/network-administration/blob/main/network-routing-and-switching/guia_ccna2.txt 
@@ -71,6 +72,20 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
 # en una situación ideal. La única forma a entrar a esta vlan
 # deberá de ser por SSH.
 
+-Crear una interface troncal
+# En este ejemplo, usaremos la interfaz GigabitEthernet0/1.
+# Permitiremos que por la troncap pasen las vlans 10, 20, y
+# 90.
+  Switch>enable
+  Switch#configure terminal
+  Switch(config)#interface GigabitEthernet0/1
+  Switch(config-if)#switchport mode trunk
+  Switch(config-if)#switchport trunk allow vlan 10,20,90
+# Además, haremos que la vlan 90 sea una vlan nativa.
+  Switch(config-if)#switchport trunk native 90
+# Para verificar si la interfaz se ha configurado correctamente:
+  Switch#show interface trunk
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~ROUTER~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -92,7 +107,7 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
   Router#(config-if)#no shutdown
 
 - Establecer servidor SSH
-  Router>enable
+  Router>	enable
   Router#config terminal
 # Poner el switch en un dominio
   Router(config)#ip domain-name <nombre.dominio>
@@ -109,3 +124,26 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
   Router(config)#username <nombre de usuario> password <contraseña>
   Router(config)#service password-encryption 
 
+-Configurar una subinterfaz para una vlan de datos.
+# Para este ejemplo, usaremos el puerto GigabitEthernet0/0, para
+# crear la subinterfaz GigabitEthernet0/0/0.10.
+  Router>enable
+  Router#configure terminal
+  Router(config)#interface GigabitEthernet0/0.10
+  Router(config-subif)#encapsulation dot1Q 10
+  Router(config-subif)#ip address 192.168.10.1 255.255.255.0
+  Router(config-subif)#exit
+  Router(config)#interface gi0/0.20
+  Router(config-subif)#encapsulation dot1Q 10
+  Router(config-subif)#ip address 192.168.20.1
+  Router(config-subif)#exit
+
+-configurar una subinterface para una vlan nativa.
+  Router>enable
+  Router#config terminal
+  Router(config)#interface gi0/0.90
+  Router(config-subif)#encapsulation dot 1Q 90 native
+  Router(config-subif)#ip address 192.168.90.1 255.255.255.0
+  Router(config-subif)#exit
+  Router(config)#interface GigabitEthernet0/0
+  Router(config-if)#no shutdown
