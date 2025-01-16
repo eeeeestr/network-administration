@@ -38,7 +38,7 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
   Switch>enable
   Switch#config terminal
   Switch(config)#vlan 10
-  Switch(config-if)#name OPERACIONES
+  Switch(config-vlan)#name OPERACIONES
   
 -Asignarle puertos a una vlan (vlan 20)
   Switch>enable
