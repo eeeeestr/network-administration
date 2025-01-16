@@ -1,5 +1,15 @@
 # Network Administration
 
+<hr>
+
+## WARNING
+
+PLEASE don't rely on this repository, it's on active work in progress and constant changes will happen.
+
+POR FAVOR no depender en este repositorio, cambios constantes sucederán.
+
+## Description
+
 Repository containing information from my Network Administration degree (ongoing).
 Repositorio que contiene información sobre mi carrera de Administración de Redes y Comunicaciones (en curso).
 
