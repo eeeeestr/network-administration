@@ -1,8 +1,9 @@
 Guía para el curso de Enrutamiento y conmutación de redes
 (CCNA II).
 Guía hecha por Estrella Freundt.
-Último edit 
-Obtener la última versión del archivo en: 
+Último edit: 16 de Enero de 2025
+Obtener la última versión del archivo en:
+https://github.com/efrndt/network-administration/blob/main/network-routing-and-switching/guia_ccna2.txt 
 
 ~~~~~~~~~~SWITCH~~~~~~~~~~
 -Para cambiar la ipv4 de una vlan:
@@ -70,9 +71,13 @@ Obtener la última versión del archivo en:
 - Establecer servidor SSH
   Router>enable
   Router#config terminal
+# Poner el switch en un dominio
   Router(config)#ip domain-name <nombre.dominio>
+# Generar la crypto key
   Router(config)#crypto key generate rsa 
 	How many bits in the modulus [512]: 2048
+# Por defecto, el swtich que utilizo biene con ssh versión 1.
+# Este comando cambia a la ssh versión 2.
   Router(config)#ip ssh version 2
   Router(config)#line vty 0 4
   Router(config-if)#transport input shh
