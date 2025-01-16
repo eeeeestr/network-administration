@@ -1,7 +1,5 @@
 # Network Administration
 
-<hr>
-
 ## WARNING
 
 PLEASE don't rely on this repository, it's on active work in progress and constant changes will happen.
