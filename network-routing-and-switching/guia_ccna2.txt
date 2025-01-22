@@ -74,7 +74,7 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
 
 -Crear una interface troncal
 # En este ejemplo, usaremos la interfaz GigabitEthernet0/1.
-# Permitiremos que por la troncap pasen las vlans 10, 20, y
+# Permitiremos que por la troncal pasen las vlans 10, 20, y
 # 90.
   Switch>enable
   Switch#configure terminal
@@ -107,7 +107,7 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
   Router#(config-if)#no shutdown
 
 - Establecer servidor SSH
-  Router>	enable
+  Router>enable
   Router#config terminal
 # Poner el switch en un dominio
   Router(config)#ip domain-name <nombre.dominio>
