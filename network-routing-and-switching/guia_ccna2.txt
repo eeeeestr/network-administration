@@ -66,7 +66,7 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
 # debe de ser la vlan administrativa, de otra forma, se expone a
 # riesgos de malfuncionamiento y seguridad.
   Switch(config)interface vlan 90
-  Switch(config-if)#ip address 192.168.90.5
+  Switch(config-if)#ip address 192.168.90.5 255.255.255.0
   Switch(config-if)#no shutdown
 # La vlan administrativa no debe de tener ningún puerto asignado
 # en una situación ideal. La única forma a entrar a esta vlan
@@ -82,7 +82,7 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
   Switch(config-if)#switchport mode trunk
   Switch(config-if)#switchport trunk allow vlan 10,20,90
 # Además, haremos que la vlan 90 sea una vlan nativa.
-  Switch(config-if)#switchport trunk native 90
+  Switch(config-if)#switchport trunk native vlan 90
 # Para verificar si la interfaz se ha configurado correctamente:
   Switch#show interface trunk
 
