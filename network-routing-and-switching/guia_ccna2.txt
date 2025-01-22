@@ -122,6 +122,9 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
   Router(config-if)#login local
   Router(config-if)#exit
   Router(config)#username <nombre de usuario> password <contraseña>
+# Darles privilegios de administrador al usuario
+  Router(config)#username <nombre de usuario> privilege 15 
+# Encriptar las contraseñas
   Router(config)#service password-encryption 
 
 -Configurar una subinterfaz para una vlan de datos.
@@ -129,19 +132,26 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
 # crear la subinterfaz GigabitEthernet0/0/0.10.
   Router>enable
   Router#configure terminal
+# Seleccionamos la interface GI0/0.10
   Router(config)#interface GigabitEthernet0/0.10
+# Configuramos el encapsulamiento intra VLan
   Router(config-subif)#encapsulation dot1Q 10
+# Definimos la subred
   Router(config-subif)#ip address 192.168.10.1 255.255.255.0
   Router(config-subif)#exit
+# Haremos lo mismo con la interface GI0/0.20
   Router(config)#interface gi0/0.20
   Router(config-subif)#encapsulation dot1Q 20
-  Router(config-subif)#ip address 192.168.20.1
+  Router(config-subif)#ip address 192.168.20.1 255.255.255.0
   Router(config-subif)#exit
 
--configurar una subinterface para una vlan nativa.
+-Configurar una subinterface para una vlan nativa.
   Router>enable
   Router#config terminal
+# Seleccionaremos la interface GI0/0.90
   Router(config)#interface gi0/0.90
+# Configuramos el encapsulamiento inter VLan, especificando
+# que la encapsulación sea para una vlan nativa.
   Router(config-subif)#encapsulation dot 1Q 90 native
   Router(config-subif)#ip address 192.168.90.1 255.255.255.0
   Router(config-subif)#exit
