@@ -134,7 +134,7 @@ https://github.com/efrndt/network-administration/blob/main/network-routing-and-s
   Router(config-subif)#ip address 192.168.10.1 255.255.255.0
   Router(config-subif)#exit
   Router(config)#interface gi0/0.20
-  Router(config-subif)#encapsulation dot1Q 10
+  Router(config-subif)#encapsulation dot1Q 20
   Router(config-subif)#ip address 192.168.20.1
   Router(config-subif)#exit
 
