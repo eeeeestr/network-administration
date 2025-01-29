@@ -5,7 +5,7 @@
 Obtener la última versión del archivo en:
 https://github.com/efrndt/network-administration/blob/main/network-routing-and-switching/guia_ccna2.txt 
 
-## SWITCH
+## Switch
 
 ### Básico: IPv4 e IPv6
 
