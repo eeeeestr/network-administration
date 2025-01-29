@@ -1,18 +1,15 @@
-Guía para el curso de Enrutamiento y Conmutación de Redes
-(CCNA II).
-Guía hecha por Estrella Freundt.
-Este curso me fue dictado por el profesor Napoleón Cerna Rosas.
-Último edit: 16 de Enero de 2025
+# Guía para el curso de Enrutamiento y Conmutación de Redes (CCNA II).
+* Guía hecha por Estrella Freundt.
+* Este curso me fue dictado por el profesor Napoleón Cerna Rosas.
+* Último edit: 29 de Enero de 2025
 Obtener la última versión del archivo en:
 https://github.com/efrndt/network-administration/blob/main/network-routing-and-switching/guia_ccna2.txt 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~SWITCH~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+## SWITCH
 
-## Básico: IPv4 e IPv6
+### Básico: IPv4 e IPv6
 
-### Para cambiar la ipv4 de una vlan:
+#### Para cambiar la ipv4 de una vlan:
 ```
 Switch>enable
 Switch#configure terminal
@@ -21,14 +18,14 @@ Switch(config-if)#ip address <ip> <máscara>
 Switch(config-if)#no shutdown
 ```
 
-### Para poner gateway por defecto:
+#### Para poner gateway por defecto:
 ```
 Switch>enable
 Switch#configute terminal
 Switch(config)#ip default-gateway <ip>
 ```
 
-### Para cambiar la ipv6 de una vlan:
+#### Para cambiar la ipv6 de una vlan:
 ```
 Switch>enable
 Switch#config terminal
@@ -40,16 +37,16 @@ Switch(config)#int <vlan>
 Switch(config-if)#ipv6 address <ip>/<prefijo>
 Switch(config-if)#no shutdown
 ```
-### Consultar estado de interfaces ipv4 e ipv6
+#### Consultar estado de interfaces ipv4 e ipv6
 ```
 Switch>enable
 Switch>show ip interface brief
 Switch>show ipv6 interface brief
 ```
 
-## VLans
+### VLans
 
-### Crear una vlan de datos (vlan 10) y renombrarla a "OPERACIONES"
+#### Crear una vlan de datos (vlan 10) y renombrarla a "OPERACIONES"
 ```
 Switch>enable
 Switch#config terminal
@@ -57,7 +54,7 @@ Switch(config)#vlan 10
 Switch(config-vlan)#name OPERACIONES
 ```
 
-### Asignarle puertos a una vlan (vlan 20)
+#### Asignarle puertos a una vlan (vlan 20)
 ```
 Switch>enable
 # Mostar las vlans existentes:
@@ -70,7 +67,7 @@ Switch(config-if-range)switchport mode access
 Switch(config-if-ramnge)swtich access vlan 20
 ```
 
-### Crear una vlan administrativa
+#### Crear una vlan administrativa
 
 ```
 Switch>enable
@@ -86,7 +83,7 @@ Switch(config-if)#no shutdown
 # La vlan administrativa no debe de tener ningún puerto asignado en una situación ideal. La única forma a entrar a esta vlan deberá de ser por SSH.
 ```
 
-### Crear una interface troncal
+#### Crear una interface troncal
 
 ```
 # En este ejemplo, usaremos la interfaz GigabitEthernet0/1. Permitiremos que por la troncal pasen las vlans 10, 20, y 90.
@@ -101,9 +98,9 @@ Switch(config-if)#switchport trunk native vlan 90
 Switch#show interface trunk
 ```
 
-## Spanning tree
+### Spanning tree
 
-### Reconocer el switch raíz
+#### Reconocer el switch raíz
 
 ```
 Switch>enable
@@ -111,14 +108,14 @@ Switch#show spanning-tree
 # Si todos los puertos son **designados**, entonces usted se encuentra en el switch raíz
 ```
 
-### Definir switch como switch raiz de la vlan 1
+#### Definir switch como switch raiz de la vlan 1
 ```
 Switch>enable
 Switch#config terminal
 Switch(config)#spanning tree vlan 1 root primary
 ```
 
-### Definir prioridades de los switches para la vlan 1
+#### Definir prioridades de los switches para la vlan 1
 ```
 Switch>enable
 Switch#config terminal
@@ -129,7 +126,9 @@ Switch(config)#spanning-tree vlan 1 priority 4096
 
 ## Router
 
-### Para cambiar la ipv4 de una interfaz:
+### Configuración Básica
+
+#### Para cambiar la ipv4 de una interfaz:
 ```
 Router>enable
 Router#configure terminal
@@ -137,7 +136,7 @@ Router(config)#interface <interfaz>
 Router(config-if)#ip address <ip> <máscara>
 Router(config-if)#no shutdown
 ```
-### Para cambiar la ipv6 de una interfaz:
+#### Para cambiar la ipv6 de una interfaz:
 ```
   Router>enable
   Router#configure terminal
@@ -147,7 +146,7 @@ Router(config-if)#no shutdown
   Router(config-if)$#ipv6 address <ip>/<prefijo>
   Router#(config-if)#no shutdown
 ```
-### Establecer servidor SSH
+#### Establecer servidor SSH
 ```
   Router>enable
   Router#config terminal
@@ -169,7 +168,10 @@ Router(config-if)#no shutdown
 # Encriptar las contraseñas
   Router(config)#service password-encryption 
 ```
-### Configurar una subinterfaz para una vlan de datos.
+
+### VLan
+
+#### Configurar una subinterfaz para una vlan de datos.
 ```
 # Para este ejemplo, usaremos el puerto GigabitEthernet0/0, para
 # crear la subinterfaz GigabitEthernet0/0/0.10.
@@ -189,7 +191,7 @@ Router(config-if)#no shutdown
   Router(config-subif)#exit
 ```
 
-### Configurar una subinterface para una vlan nativa.
+#### Configurar una subinterface para una vlan nativa.
 ```
   Router>enable
   Router#config terminal
