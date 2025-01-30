@@ -105,7 +105,8 @@ Switch#show interface trunk
 ```
 Switch>enable
 Switch#show spanning-tree
-# Si todos los puertos son **designados**, entonces usted se encuentra en el switch raíz
+# Si todos los puertos son **designados**, entonces usted se encuentra
+# en el switch raíz
 ```
 
 #### Definir switch como switch raiz de la vlan 1
@@ -123,6 +124,52 @@ Switch#config terminal
 Switch(config)#spanning-tree vlan 1 priority 4096
 ```
 
+## Etherchannel
+
+#### Para habilitar etherchannel en un rango de puertos
+```
+Switch1>enable
+Switch1#config t
+# Para este ejemplo, digamos que las interfaces Fa0/1,Fa0/6
+# y Fa0/18 de un Switch1 están todas conectadas al Switch2.
+# Asumiremos que esta es la primera configuración de etherchannel
+# en nuestro arreglo.
+Switch1(config)#interface range Fa0/1,Fa0/6,Fa0/18
+# Hay cuatro modos:
+#  active     Activar LACP incondicionalmente.
+#  auto       Activar PAgP sólo si otro dispositivo PAgP es detectado.
+#  desirable  Activar PAgP incondicionalmente.
+#  on         Activar sólo EtherChannel
+#  passive    Activar LACP sólo si otro dispositivo LACP es detectado
+# Usarlos modos para LACP sólo para routers Cisco.
+Switch1(config-if-range)#channel-group 1 mode active
+# Para completar la configuración, haremos lo mismo en el Switch 2.
+Switch2>enable
+Switch2#config terminal
+# Usaremos los puertos Fa0/3,Fa0/4 y Fa0/5. Recordemos que que el
+# número del grupo del canal es "1". 
+Switch2(config)interface range Fa0/3-5
+Switch2(config-if-range)channel-group 1 mode active
+# Ahora ya podemos verificar que nuestros Puertos Fast Ethernet
+# se han convertido en un sólo puerto lógico "Port-Channel".
+Switch1#show spanning-tree
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     70d3.7925.bc00
+             Cost        19
+             Port        80 (Port-channel3)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     70d3.79d3.d880
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Po1                 Root FWD 19        128.80   P2p
+```
 
 ## Router
 
