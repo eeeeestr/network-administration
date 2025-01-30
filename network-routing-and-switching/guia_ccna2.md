@@ -171,6 +171,16 @@ Interface           Role Sts Cost      Prio.Nbr Type
 Po1                 Root FWD 19        128.80   P2p
 ```
 
+### Configurar un dispositivo como punto de acceso.
+```
+Switch>enable
+Switch#config terminal
+Switch(config)#interface Fa0/5
+Switch(config-if)#switchport mode access
+# Debemos especificar la vlan a la que pertenece el puerto.
+Switch(config-if)#switchport access vlan 1
+```
+
 ## Router
 
 ### Configuración Básica
