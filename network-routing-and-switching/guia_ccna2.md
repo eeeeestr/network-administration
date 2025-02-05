@@ -64,7 +64,7 @@ Switch#show ip interface brief
 Switch#config terminal
 Switch(config)#interface range fa0/2-8
 Switch(config-if-range)switchport mode access 
-Switch(config-if-ramnge)swtich access vlan 20
+Switch(config-if-range)switchport access vlan 20
 ```
 
 #### Crear una vlan administrativa
@@ -123,6 +123,16 @@ Switch#config terminal
 # Las prioridades van de 4096 en 4096.
 Switch(config)#spanning-tree vlan 1 priority 4096
 ```
+
+### Activar BPDU guard
+```
+Switch>enable
+Switch#config terminal
+Switch(config)#interface FastEthernet0/3
+Switch(config-if)spanning-tree portfast
+Switch(config-if)spaning-tree bpduguard enable
+```
+
 
 ## Etherchannel
 
@@ -262,3 +272,34 @@ Router(config-if)#no shutdown
   Router(config)#interface GigabitEthernet0/0
   Router(config-if)#no shutdown
 ```
+
+## DHCP
+
+### Configurar una pool DHCP
+```
+Switch>enable
+Switch#config terminal
+Switch(config)#ip dhcp pool <pool name>
+# Especificamos en qué red se aplicará el pool
+Switch(dhcp-config)#network 192.168.10.0 255.255.255
+# Especificamos la ip default del router en el puerto que
+# usaremos para salir a la red
+Switch(dhcp-config)#default-router 192.168.10.1
+# Especificamos la ip del servidor dns que nos proveerá
+# el router
+Switch(dhcp-config)#dns-server 192.168.10.10
+Switch(dhcp-config)#domain-name <domain.name.com>
+Switch#show ip dhcp pool
+```
+
+### Excluir IPs de pool de DHCP
+```
+Switch>enable
+Switch#config terminal
+Switch(config)#ip dhcp excluded-address <IP>
+# Siempre recordemos excluir las IPs del router y
+# de nuestros servidores dns, al igual que las IPs
+# estáticas que puedan causar conflicto con la pool
+# determinada.
+```
+
