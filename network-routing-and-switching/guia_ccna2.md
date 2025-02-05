@@ -275,7 +275,7 @@ Router(config-if)#no shutdown
 
 ## DHCP
 
-### Configurar una pool DHCP
+### Configurar un pool DHCP
 ```
 Switch>enable
 Switch#config terminal
@@ -303,3 +303,22 @@ Switch(config)#ip dhcp excluded-address <IP>
 # determinada.
 ```
 
+### Configurar un pool DHCP de un router de ISP a un router de casa
+```
+ISP>enable
+ISP#config terminal
+ISP(config)#ip dhcp pool home-router
+ISP(dhcp-config)#network 200.168.1.0 255.255.255.0
+ISP(dhcp-config)#domain-name routers.com
+ISP(dhcp-config)#exit
+ISP(config)#ip dhcp exclude-address 200.168.1.1
+ISP(config)#interface GigabitEthernet0/0/0
+ISP(config-if)#ip address 200.168.1.1 255.255.255.0
+ISP(config-if)#no shutdown
+
+HOME>enable
+HOME#configure terminal
+HOME(config)#interface GigabitEthernet0/0/0
+HOME(config-if)ip address dhcp
+HOME(config-if)no shutdown
+```
