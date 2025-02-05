@@ -3,7 +3,7 @@
 * Este curso me fue dictado por el profesor Napoleón Cerna Rosas.
 * Último edit: 29 de Enero de 2025
 Obtener la última versión del archivo en:
-https://github.com/efrndt/network-administration/blob/main/network-routing-and-switching/guia_ccna2.txt 
+https://github.com/eeeeestr/network-administration/blob/main/network-routing-and-switching/guia_ccna2.txt 
 
 ## Switch
 
