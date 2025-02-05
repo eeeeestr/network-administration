@@ -319,6 +319,6 @@ ISP(config-if)#no shutdown
 HOME>enable
 HOME#configure terminal
 HOME(config)#interface GigabitEthernet0/0/0
-HOME(config-if)ip address dhcp
-HOME(config-if)no shutdown
+HOME(config-if)#ip address dhcp
+HOME(config-if)#no shutdown
 ```
