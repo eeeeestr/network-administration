@@ -322,3 +322,21 @@ HOME(config)#interface GigabitEthernet0/0/0
 HOME(config-if)#ip address dhcp
 HOME(config-if)#no shutdown
 ```
+
+### Configurar un servidor DHCP en otra red
+```
+# Preconfigurar la pool de DHCP en el servidor.
+# Para este ejemplo, el servidor está conectado a la
+# red 192.168.0.0, con ip 192.168.0.5.
+# Nuestros dispositivos finales están en la red
+# 192.168.1.0.
+Router>enable
+Router#config terminal
+Router(config)#interface GigabitEthernet0/0/0
+Router(config-if)#ip address 192.168.0.1 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)interface GigabitEthernet0/0/1
+Router(config-if)#ip address 192.168.1.1 255.255.255.0
+Router(config-if)#ip helper-address 192.168.0.5
+Router(config-if)#no shutdown
