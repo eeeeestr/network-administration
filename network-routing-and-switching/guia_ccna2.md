@@ -273,7 +273,7 @@ Router(config-if)#no shutdown
   Router(config-if)#no shutdown
 ```
 
-## DHCP
+## DHCPv4
 
 ### Configurar un pool DHCP
 ```
@@ -340,3 +340,63 @@ Router(config)interface GigabitEthernet0/0/1
 Router(config-if)#ip address 192.168.1.1 255.255.255.0
 Router(config-if)#ip helper-address 192.168.0.5
 Router(config-if)#no shutdown
+
+## DHCPv6
+
+### Configurar un pool de DHCPv6 stateless
+```
+Router>enable
+Router#config terminal
+Router(config)#ipv6 unicast-routing 
+Router(config)#ipv6 dhcp pool <nombre del pool>
+Router(config-dhcpv6)#dns-server 2001:acad:db8:a::10 
+Router(config-dhcpv6)#domain-name <domain name>
+Router(config-dhcpv6)#exit
+Router(config)#interface GigabitEthernet0/0/0
+Router(config-if)#ipv6 address 2001:acad:db8:a::1/64
+Router(config-if)#ipv6 nd other-config-flag
+Router(config-if)#ipv6 dhcp server <nombre del pool>
+Router(config-if)#no shutdown
+```
+
+### Configurar un pool de DHPV6 Statefull
+```
+Router>enable
+Router#config terminal
+Router(config)#ipv6 unicast-routing
+Router(config)#ipv6 dhcp pool <nombre del pool de dhcp>
+Router(config-dhcpv6)#address prefix 2001:db8:acad:a::/64
+Router(config-dhcpv6)#dns-server 2001:4860:4860::8888
+Router(config-dhcpv6)#domain-name <nombre de dominio>
+Router(config-dhcpv6)#exit
+Router(config)#interface GigabitEthernet0/0/0
+Router(config-if)#ipv6 add 2001:db8:acad:1::1/64
+Router(config-if)#ipv6 nd prefix default no-autoconfig
+Router(config-if)#ipv6 dhcp server <nombre del pool de dhcp>
+Router(config-if)#no shutdown
+```
+
+### Configurar relay
+```
+Router>enable
+Router#config terminal
+Router(config)#interface GigabitEthernet0/0/1
+Router(config-if)#ipv6 dhcp relay destination 2001:db8:acad:1::2 G0/0/0
+Router(config-if)#no shutdown
+```
+
+## Router Virual
+
+### Configurar un router virtual
+```
+Router>enable
+Router#config terminal
+Router(config)interface GigabitEthernet0/0/0
+Router(config-if)#ip address 192.168.0.2
+Router(config-if)#standby ip 192.168.0.1
+# le ponemos una prioridad mayor, por defecto es 100.
+Router(config-if)#standby priority 110
+Router(config-if)#standby preempt
+Router(config-if)#end
+Router#show standby
+```
