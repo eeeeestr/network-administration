@@ -1,7 +1,7 @@
 # Guía para el curso de Enrutamiento y Conmutación de Redes (CCNA II).
 * Guía hecha por Estrella Freundt.
 * Este curso me fue dictado por el profesor Napoleón Cerna Rosas.
-* Último edit: 29 de Enero de 2025
+* Último edit: 12 de Febrero de 2025
 Obtener la última versión del archivo en:
 https://github.com/eeeeestr/network-administration/blob/main/network-routing-and-switching/guia_ccna2.txt 
 
