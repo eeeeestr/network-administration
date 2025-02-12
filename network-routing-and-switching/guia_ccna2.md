@@ -340,6 +340,7 @@ Router(config)interface GigabitEthernet0/0/1
 Router(config-if)#ip address 192.168.1.1 255.255.255.0
 Router(config-if)#ip helper-address 192.168.0.5
 Router(config-if)#no shutdown
+```
 
 ## DHCPv6
 
