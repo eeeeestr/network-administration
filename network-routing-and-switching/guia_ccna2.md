@@ -5,9 +5,7 @@
 Obtener la última versión del archivo en:
 https://github.com/eeeeestr/network-administration/blob/main/network-routing-and-switching/guia_ccna2.md 
 
-[TOC]
-
-## Switch
+## Switch <a name="Switch"></a>
 
 ### Básico: IPv4 e IPv6
 
@@ -277,7 +275,7 @@ Switch(config)#ip arp inspection validate ip src-mac dst-mac
 ```
 
 
-## Router
+## Router ## Switch <a name="Router"></a>
 
 ### Configuración Básica
 
