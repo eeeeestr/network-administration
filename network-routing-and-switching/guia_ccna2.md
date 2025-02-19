@@ -133,6 +133,20 @@ Switch(config-if)spanning-tree portfast
 Switch(config-if)spaning-tree bpduguard enable
 ```
 
+### Activar portfast de manera global
+```
+Switch>enable
+Switch#config terminal
+Switch(config)#spanning-tree portfast default
+```
+
+### Activar BPDU guard de manera global
+```
+Switch>enable
+Switch#config terminal
+Switch(config)#spanning-tree portfast bpdu guard default
+```
+
 
 ## Etherchannel
 
@@ -190,6 +204,76 @@ Switch(config-if)#switchport mode access
 # Debemos especificar la vlan a la que pertenece el puerto.
 Switch(config-if)#switchport access vlan 1
 ```
+
+## Mitigando ataques
+
+### Configurar un puerto confiable como troncal
+```
+Switch>enabke
+Switch#config terminal
+Switch(config)#interface GigabitEthernet0/1
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#no shutdown
+```
+
+### Configurar un puerto no confiable como acceso 
+```
+Switch>enabke
+Switch#config terminal
+Switch(config)#interface FastEthernet0/21
+Switch(config-if)#switchport mode access
+Switch(config-if)#no shutdown
+```
+
+### Desabilitar las negociaciones DTP en un puerto no confiable
+```
+Switch>enabke
+Switch#config terminal
+Switch(config)#interface FastEthernet0/21
+Switch(config-if)#swtichport nonegotiate
+Switch(config-if)#no shutdown
+```
+
+### Implementar DHCP Snooping en un puerto confiable y no confiable
+```
+# En este ejemplo, GiE0/1 es la interfaz confiable y Fa0/21
+# es la interfaz no confiable. 
+Switch>enabke
+Switch#config terminal
+Switch(config)#ip dhcp snooping
+Switch(config)#interface GigabitEthernet0/1
+Switch(config-if)#ip dhcp snooping trust
+Switch(config-if)#exit
+Switch(config)#interface FastEthernet0/21
+Switch(config-if)#ip dhcp snooping limit rate 2
+# Ahora, habilitaremos DHCP Snooping en una VLAN
+# específica
+Switch(config-if)#exit
+Switch(config)vlan 10
+Switch(config)ip dhcp snooping vlan 5,10,60-66
+```
+
+### Habilitar ARP Snooping en una red confiable y no confiable 
+```
+# Para este ejemplo, la vlan 1, 5, 10, 60, 61, 62, 63, 64, 65 y 66
+#  no son confiables, y la interfaz Gi0/1 sí es confiable.
+Switch>enabke
+Switch#config terminal
+Swtich(config)#ip dhcp snooping vlan 5,10,60-66
+Switch(config)#ip arp snooping vlan 5,10,60-66
+Switch(config)#interface GigabitEthernet0/1
+Switch(config-if)#ip dhcp snooping trust
+Swtich(config-if)#ip arp inspection trust
+Switch(config-if)#no shutdown
+```
+
+### Configurar ARP Snooping para validar las direcciones MAC de destino y origen, y la dirección IP
+```
+Swtch>enable
+Switch#enable
+Switch(config)#ip arp inspection validate ip src-mac dst-mac
+```
+
 
 ## Router
 
