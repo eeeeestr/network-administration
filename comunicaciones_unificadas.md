@@ -1,9 +1,8 @@
 # Guía para el curso de Comunicaciones Unificadas
 * Guía hecha por Estrella Freundt.
 * Este curso me fue dictado por el profesor Napoleón Cerna Rosas.
-* Último edit: 06 de Abril de 2025
-Obtener la última versión del archivo en:
-https://github.com/eeeeestr/network-administration/blob/main/comunicaciones_unificadas.md 
+* Último edit: 06 de Abril de 2025.
+* Obtener la última versión del archivo en: https://github.com/eeeeestr/network-administration/blob/main/comunicaciones_unificadas.md 
 
 ## Router
 
