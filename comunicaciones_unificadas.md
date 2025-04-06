@@ -8,33 +8,61 @@
 
 ### Configurar una pool DHCP para la voz.
 ```
-Switch>enable
-Switch#configure terminal
-Switch(config)#ip dhcp pool VOICE
-Switch(config-dhcp)#option 150 ip 192.168.20.1
-Switch(config-dhcp)#default-router 192.168.20.1
-Switch(config-dhcp)#dns-server 192.168.20.2
-Switch(config-dhcp)#domain-name EMPRESA
-Switch(config-dhcp)#network 192.168.20.0 255.255.255.0
-Switch(config-dhcp)#exit
-Switch(config)#ip dhcp excluded-addresses 192.168.20.1 192.168.20.2
+Router>enable
+Router#configure terminal
+Router(config)#ip dhcp pool VOICE
+Router(config-dhcp)#option 150 ip 192.168.20.1
+Router(config-dhcp)#default-router 192.168.20.1
+Router(config-dhcp)#dns-server 192.168.20.2
+Router(config-dhcp)#domain-name EMPRESA
+Router(config-dhcp)#network 192.168.20.0 255.255.255.0
+Router(config-dhcp)#exit
+Router(config)#ip dhcp excluded-addresses 192.168.20.1 192.168.20.2
 ```
 
 ### Configurar servicio de telefonía
 ```
+Router>enable
+Router#configure terminal
+Router(config)#license boot module c2900 technology-package uck9
+Router(config)#reload
+Router>enable
+Router#configure terminal
+Router(config)#telephony-service
+Router(config-telephony)#auto assign (número mínimo de teléfonos ip) to (número máximo de teléfonos ip)
+Router(config-telephony)#ip source-address 192.168.20.1 port 2000
+Router(config-telephony)#keepalive 30
+Router(config-telephony)#max-dn (número máximo de números en el directorio)
+Router(config-telephony)#max-ephones (número máximo de teléfonos ip)
+Router(config-telephony)#exit
+Router(config)#ephone-dn 1
+Router(config-ephone-dn)#number (número)
+```
+
+## Switch
+
+### Configurar una vlan para uso de voz. Además, permitir la vlan a través del enlace troncal.
+```
 Switch>enable
-Switch#configure terminal
-Switch(config)#license boot module c2900 technology-package uck9
-Switch(config)#reload
+Switch#config terminal
+Switch(config)#vlan 20
+Switch(config-vlan)#name VOICE
+Switch(config-vlan)#exit
+Switch(config)#interface <Enlace Troncal>
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#switchport trunk native vlan <vlan nativa>
+Switch(config-if)#switchport voice vlan 20
+Switch(config-if)#exit
+```
+
+### Configurar una vlan para uso de voz. Además, definiar los puertos por los que el servicio de voz será transmitida.
+```
 Switch>enable
-Switch#configure terminal
-Switch(config)#telephony-service
-Switch(config-telephony)#auto assign (número mínimo de teléfonos ip) to (número máximo de teléfonos ip)
-Switch(config-telephony)#ip source-address 192.168.20.1 port 2000
-Switch(config-telephony)#keepalive 30
-Switch(config-telephony)#max-dn (número máximo de números en el directorio)
-Switch(config-telephony)#max-ephones (número máximo de teléfonos ip)
-Switch(config-telephony)#exit
-Switch(config)#ephone-dn 1
-Switch(config-ephone-dn)#number (número)
+Switch#config terminal
+Switch(config)#vlan 20
+Switch(config-vlan)#name VOICE
+Switch(config-vlan)#exit
+Switch(config)#interface range <interfaces donde viene la voz>
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)switchport voice vlan 20
 ```
