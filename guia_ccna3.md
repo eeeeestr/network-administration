@@ -1,4 +1,4 @@
-# Guía para el curso de Redes Escalables (CCNA I(I).
+# Guía para el curso de Redes Escalables (CCNA III).
 * Guía hecha por Estrella Freundt.
 * Este curso me fue dictado por el profesor Napoleón Cerna Rosas.
 * Último edit: 4 de Junio de 2025
