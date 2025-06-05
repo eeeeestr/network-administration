@@ -15,7 +15,7 @@ Router(config)#router ospf <1-65535>
 Router(config-router)#router-id <id de 32 bits, por ejemplo 1.1.1.1>
 Router(config-router)#network <red a propagar. por ejemplo, 192.168.1.1> <wildcard, por ejemplo, 0.0.0.255> area <área de ospf, por ejemplo, 0>
 Router(config-router)#passive-interface <interfaz pasiva>
-Router(config-router)#
+Router(config-router)#default-information originate
 ```
 
 ### Activar una interfaz en OSPF.
@@ -25,3 +25,5 @@ Router#config terminal
 Router(config)#interface <interfaz a activar OSPF en>
 Router(config-if)#ip ospf <1-65535> area <área>
 ```
+
+## 
