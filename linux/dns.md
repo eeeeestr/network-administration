@@ -180,9 +180,8 @@ HOSTBYTES       IN  PTR     www.miempre.sa.
 
 ## Probar el servidor DNS
 
-```
-dig @SERVER.IP.GOES.HERE ns1.miempre.sa
-```
+Reemplazar `SERVER.IP.GOES.HERE` con la IP del servidor.
 
 ```
+dig @SERVER.IP.GOES.HERE ns1.miempre.sa
 ```
