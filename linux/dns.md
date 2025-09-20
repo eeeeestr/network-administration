@@ -1,3 +1,5 @@
+# Configurar una Servidor DNS en RHEL o derivados.
+
 ## Fijarse la versión del sistema operativo
 
 ```
