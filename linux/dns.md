@@ -3,20 +3,20 @@
 ## Fijarse la versión del sistema operativo
 
 ```
-cat /etc/os-release
+# cat /etc/os-release
 ```
 
 ## Actualizar el sistema e instalar las bind-utils
 
 ```
-sudo dnf update -y
-sudo dnf install bind bind-utils -y
+# dnf update -y
+# dnf install bind bind-utils -y
 ```
 
 ## Configurar el archivo named.conf
 
 ```
-sudo nano /etc/named.conf
+# nano /etc/named.conf
 ```
 
 Reemplazar `SERVER.IP.GOES.HERE` con la IP del servidor.
@@ -97,7 +97,7 @@ include "/etc/named.root.key";
 ## Crear el archivo directo de zona
 
 ```
-sudo nano /var/named/directa.miempre.sa
+# nano /var/named/directa.miempre.sa
 ```
 
 Reemplazar `SERVER.IP.GOES.HERE` con la IP del servidor.
@@ -125,7 +125,7 @@ www     IN  A       WEBSERVER.IP.GOES.HERE
 ## Crear el archivo inverso de zona
 
 ```
-sudo nano /var/named/inversa.cibertec.pe
+# nano /var/named/inversa.cibertec.pe
 ```
 
 Reemplazar `miempre.sa` con el dominio de la empresa
