@@ -153,7 +153,9 @@ HOSTBYTES       IN  PTR     www.miempre.sa.
 
 ```
 # chown root:named /var/named/directa.miempre.sa
+# chown root:named /var/named/inversa.miempre.sa
 # chmod 640 /var/named/directa.miempre.sa
+# chmod 640 /var/named/inversa.miempre.sa
 ```
 
 ## Abrir el puerto DNS en el firewall (UDP/TCP 53)
