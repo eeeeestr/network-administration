@@ -152,8 +152,8 @@ HOSTBYTES       IN  PTR     www.miempre.sa.
 ## Cambiar permisos del archivo de zona
 
 ```
-# chown root:named /var/named/directa.cibertec.pe
-# chmod 640 /var/named/directa.cibertec.pe
+# chown root:named /var/named/directa.miempre.sa
+# chmod 640 /var/named/directa.miempre.sa
 ```
 
 ## Abrir el puerto DNS en el firewall (UDP/TCP 53)
