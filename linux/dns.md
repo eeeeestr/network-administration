@@ -125,7 +125,7 @@ www     IN  A       WEBSERVER.IP.GOES.HERE
 ## Crear el archivo inverso de zona
 
 ```
-# nano /var/named/inversa.cibertec.pe
+# nano /var/named/inversa.miempre.sa
 ```
 
 Reemplazar `miempre.sa` con el dominio de la empresa
