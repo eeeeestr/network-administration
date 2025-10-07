@@ -195,11 +195,10 @@ Finalmente modifica en el registro del sistema los siguientes valores:
 ```
 HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters
 ```
-Ir a Panel de control → Sistema y Seguridad → Herramientas Administrativas → Directiva de seguridad local → Directivas locales → Opciones de seguridad.```
+
+```
 Domain = "empresa.lab(se abre en una nueva pestaña)" ICSDomain = "empresa.lab(se abre en una nueva pestaña)"
 ```
-
-Ahora, editamos la Configuración Avanzada de TCP/IP de la interfaz a utilizar y establecemos manualmente la dirección IP del Servidor Samba como servidor WINS. Habilitamos la casilla de **Activar NetBIOS sobre TCP/IP**.
 
 Vamos a `Panel de control → Sistema y Seguridad → Herramientas Administrativas → Directiva de seguridad local → Directivas locales → Opciones de seguridad.`
 - En Seguridad de red: nivel de autenticación de LAN Manager, establecer enviar respuestas LM y NTML.
