@@ -92,8 +92,8 @@ Para este ejemplo, vamos a crear el usuario `napo`.
 
 Ahora crearemos el usuario en samba, y la asgnamos la contraseña `test1234`
 ```
-# pdbedit -a napo
 # smbpasswd -a napo
+# smbpasswd -e napo
 ```
 
 Ahora verificamos la existencia del usuario en la base de datos de samba:
