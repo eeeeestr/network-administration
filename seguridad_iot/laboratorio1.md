@@ -125,7 +125,8 @@ c.loop_forever()
 10. **Validación del actuador:** Si no se genera una alerta durante las mediciones, publica una temperatura controlada de 8.5 °C y comprueba el mensaje enviado a comandos/alarma:
 ```docker
 docker exec broker-iot-t1 mosquitto_pub -h localhost   -t 'frioandes/camara01/raw/temperatura'   -m '{"sensor_id":"temp-01","tipo":"temperatura","valor":8.5}'
-    ```
+```
+
 11. **Arquitectura:** Elabora un diagrama con las cinco capas y el flujo de datos: sensores y alarma (dispositivo), conexión local/Docker (red), gateway_virtual.py (gateway), Mosquitto (plataforma) y suscriptor de monitoreo (aplicación).
 
 ## Actividad 2. Inventario, superficie de ataque y análisis de riesgos
@@ -151,9 +152,9 @@ $ sha256sum edge_ai/modelo_anomalias*.json
 4. **Superficie de ataque:** Identifica los servicios en escucha y revisa únicamente los puertos locales autorizados:
 
 ```bash
-ss -lntp | grep 1883
-nmap -sV -p 1883,1880,8080 127.0.0.1
-docker logs broker-iot-t1 --tail 20
+$ ss -lntp | grep 1883
+$ nmap -sV -p 1883,1880,8080 127.0.0.1
+$ docker logs broker-iot-t1 --tail 20
 ```
 
 5. **Análisis de exposición:** Documenta para cada punto: activo, interfaz o puerto, necesidad, autenticación, permisos, evidencia e impacto. Distingue entre exposición, vulnerabilidad y riesgo. El puerto 1883 abierto es una exposición; el acceso anónimo constituye una configuración insegura dentro del escenario.
