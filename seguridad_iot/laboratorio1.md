@@ -24,7 +24,7 @@ $ cd ~/lab_iot_t1
 
 4. **Bróker MQTT:** Crea el archivo `config/mosquitto.conf` con la siguiente configuración controlada:
 ```bash
-$ touch ~/lab_iot_t1/config/mosquito.conf
+$ touch ~/lab_iot_t1/config/mosquitto.conf
 ```
 ```
 listener 1883
