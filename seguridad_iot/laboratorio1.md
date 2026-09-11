@@ -22,16 +22,19 @@ $ mkdir -p ~/lab_iot_t1/{config,sensores,gateway,edge_ai,evidencias}
 $ cd ~/lab_iot_t1
 ```
 
-4. **Bróker MQTT:** Crea el archivo config/mosquitto.conf con la siguiente configuración controlada:
+4. **Bróker MQTT:** Crea el archivo `config/mosquitto.conf` con la siguiente configuración controlada:
 ```bash
-$ listener 1883
-$ allow_anonymous true
-$ persistence false
-$ log_type notice
+$ touch ~/lab_iot_t1/config/mosquito.conf
+```
+```
+listener 1883
+allow_anonymous true
+persistence false
+log_type notice
 ```
 **Advertencia:** el acceso anónimo se habilita solo para observar una condición insegura dentro del laboratorio. El puerto quedará publicado únicamente en la interfaz local.
 
-5. **Contenedor del bróker:** Crea compose.yaml y ejecuta Mosquitto:
+5. **Contenedor del bróker:** Crea `compose.yaml` y ejecuta Mosquitto:
 ```bash
 $ touch ~/lab_iot_t1/compose.yaml
 ```
